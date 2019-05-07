@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "quotaCounterKey": {
+            "required": true,
+            "type": "string"
+        },
+        "quotaPeriodKey": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Quota counter value details.",
+            "properties": {
+                "callsCount": {
+                    "description": "Number of times Counter was called.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "kbTransferred": {
+                    "description": "Data Transferred in KiloBytes.",
+                    "format": "double",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

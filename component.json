@@ -1,0 +1,118 @@
+{
+    "title": "ApiManagementClient",
+    "description": "Use these REST APIs for performing operations on Quota entity associated with your Azure API Management deployment. To configure call rate limit and quota policies refer to [how to configure call rate limit and quota](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-product-with-rules#a-namepolicies-ato-configure-call-rate-limit-and-quota-policies).",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/apimanagement-apimquotas/2016-10-10/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "QuotaByCounterKeys_ListByService": {
+            "main": "./lib/actions/QuotaByCounterKeys_ListByService.js",
+            "title": "Lists a collection of current quota counter periods associated with the counter-key configured in the policy on the specified service instance. The api does not support paging yet.",
+            "description": "Lists a collection of current quota counter periods associated with the counter-key configured in the policy on the specified service instance. The api does not support paging yet.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/QuotaByCounterKeys_ListByService.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "QuotaByCounterKeys_Update": {
+            "main": "./lib/actions/QuotaByCounterKeys_Update.js",
+            "title": "Updates all the quota counter values specified with the existing quota counter key to a value in the specified service instance. This should be used for reset of the quota counter values.",
+            "description": "Updates all the quota counter values specified with the existing quota counter key to a value in the specified service instance. This should be used for reset of the quota counter values.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/QuotaByCounterKeys_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "QuotaByPeriodKeys_Get": {
+            "main": "./lib/actions/QuotaByPeriodKeys_Get.js",
+            "title": "Gets the value of the quota counter associated with the counter-key in the policy for the specific period in service instance.",
+            "description": "Gets the value of the quota counter associated with the counter-key in the policy for the specific period in service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/QuotaByPeriodKeys_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "QuotaByPeriodKeys_Update": {
+            "main": "./lib/actions/QuotaByPeriodKeys_Update.js",
+            "title": "Updates an existing quota counter value in the specified service instance.",
+            "description": "Updates an existing quota counter value in the specified service instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/QuotaByPeriodKeys_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
